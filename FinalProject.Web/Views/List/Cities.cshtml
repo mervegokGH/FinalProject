@@ -1,0 +1,15 @@
+﻿@model Dictionary<int,string>
+
+<h1>Cities</h1>
+
+<div class="container" style="margin-top:119px;">
+    <div class="text-center">
+
+        @foreach (KeyValuePair<int, string> item in Model)
+        {
+            <a id="cities" asp-controller="List" asp-action="Hotels" asp-route-cityId="@item.Key">@item.Value</a>
+            <br />
+        }
+
+    </div>
+</div>

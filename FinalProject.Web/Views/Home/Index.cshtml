@@ -1,0 +1,81 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+@{
+     if (TempData["Errmsg"] != null)
+    {
+    <p class="text-center">
+                <div style="margin-top: 150px;" class="alert alert-danger" role="alert">@TempData["Errmsg"]</div>
+    </p>
+    }
+    if (TempData["Reservation"] != null)
+    {
+    <p class="text-center">
+                <div style="margin-top: 150px;" class="alert alert-success" role="alert">@TempData["Reservation"]</div>
+    </p>
+    }
+    else if (TempData["ReservationFailed"] != null)
+    {
+    <p class="text-center">
+                <div style="margin-top: 150px;" class="alert alert-danger" role="alert">@TempData["ReservationFailed"]</div>
+    </p>
+    }
+}
+
+
+<div class="tm-page-wrap mx-auto">
+
+
+    <section class="tm-banner">
+        <div class="tm-container-outer tm-banner-bg">
+            <div class="container">
+
+                <div class="row tm-banner-row tm-banner-row-header">
+                    <div class="col-xs-12" style="margin-top:150px;">
+                        <div class="tm-banner-header">
+                            <h1 class="text-uppercase tm-banner-title">Search for a Hotel!</h1>
+
+                            <img src="~/journey/img/dots-3.png" alt="Dots">
+                            <p class="tm-banner-subtitle">Enter a city name to see the hotel list.</p>
+                            <a href="#search" class="tm-down-arrow-link"><i class="fa fa-2x fa-angle-down tm-down-arrow"></i></a>
+                        </div>
+                    </div>  <!-- col-xs-12 -->
+                </div> <!-- row -->
+                <div class="row tm-banner-row" id="tm-section-search">
+
+
+
+                    <form class="form-group" method="post">
+                        <div class="text-center">
+
+                           
+
+                            <input id = "search" name="cityName" class="form-control" minlength="4" required />
+
+                            <br />
+
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </div>
+                    </form>
+
+
+
+                </div> <!-- row -->
+                <div class="tm-banner-overlay"></div>
+            </div>  <!-- .container -->
+        </div>     <!-- .tm-container-outer -->
+    </section>
+
+
+
+
+
+</div>
+
+
+
+
+
+

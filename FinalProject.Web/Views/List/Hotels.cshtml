@@ -1,0 +1,119 @@
+﻿@model List<Dictionary<string,string>>
+
+<h1>Hotels in Antalya</h1>
+
+@*<ul>
+    @foreach (var item in Model)
+    {
+        <li><a asp-controller="List" asp-action="HotelDetails" asp-route-ItemId="@item["ItemId"]" asp-route-OwnerProvider="@item["OwnerProvider"]" asp-route-OfferId="@item["OfferId"]">@item["HotelName"]</a></li>
+
+
+    }
+</ul>
+*@
+
+
+
+
+
+
+
+<div id="topElement" ></div>
+<section style="display:none" class="tm-banner">
+    <div class="tm-container-outer tm-banner-bg">
+        <div class="container">
+
+
+            <div class="row tm-banner-row" id="tm-section-search">
+
+                <form hidden action="index.html" method="get" class="tm-search-form tm-section-pad-2">
+                    <div class="form-row tm-search-form-row">
+                    </div> <!-- form-row -->
+                    <div class="form-row tm-search-form-row">
+
+                        <div class="form-group tm-form-group tm-form-group-pad tm-form-group-3">
+                            <label for="inputCheckIn">Check In Date</label>
+                            <input name="check-in" type="text" class="form-control" id="inputCheckIn" placeholder="Check In">
+                        </div>
+                        <div class="form-group tm-form-group tm-form-group-pad tm-form-group-3">
+                            <label for="inputCheckOut">Check Out Date</label>
+                            <input name="check-out" type="text" class="form-control" id="inputCheckOut" placeholder="Check Out">
+                        </div>
+                        <div class="form-group tm-form-group tm-form-group-pad tm-form-group-1">
+                            <label for="btnSubmit">&nbsp;</label>
+                            <button type="submit" class="btn btn-primary tm-btn tm-btn-search text-uppercase" id="btnSubmit">Check Availability</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div> <!-- row -->
+            <div class="tm-banner-overlay"></div>
+        </div>  <!-- .container -->
+    </div>     <!-- .tm-container-outer -->
+</section>
+
+<section class="p-5 tm-container-outer tm-bg-gray" style="margin-top:119px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 mx-auto tm-about-text-wrap text-center">
+                <h2 class="text-uppercase mb-4">Hotels located in <strong>@Model[0]["HotelLocation"]</strong></h2>
+                <p class="mb-4">Here is the list of hotels we have listed for you at the most affordable prices. Choose your hotel and book now!</p>
+                <a href="#lastElement" class="text-uppercase btn-primary tm-btn">Scroll to Down</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<div class="tm-container-outer" id="tm-section-3">
+
+    <div class="tab-content clearfix">
+
+        <!-- Tab 1 -->
+        <div class="tab-pane fade show active" id="1a">
+            <div class="tm-recommended-place-wrap">
+                @foreach (var item in Model)
+                {
+
+                    <div class="tm-recommended-place">
+                        <a asp-controller="List" asp-action="HotelDetails" asp-route-ItemId="@item["ItemId"]" asp-route-OwnerProvider="@item["OwnerProvider"]" asp-route-OfferId="@item["OfferId"]" asp-route-Description="@item["Description"]" asp-route-BoardName="@item["BoardName"]" asp-route-RoomName = "@item["RoomName"]" asp-route-Price = "@item["Price"]" asp-route-PriceCurrency = "@item["PriceCurrency"]">
+                        
+                        <img src="@{if (@item["ThumbnailFull"] == null){@("/journey/img/hotelDefault2.png");}else{@item["ThumbnailFull"]} }" alt="Image" class="img-fluid tm-recommended-img" style="width:270px; height:180px">
+                        </a>
+                        
+                        <div class="tm-recommended-description-box">
+                        <a asp-controller="List" asp-action="HotelDetails" asp-route-ItemId="@item["ItemId"]" asp-route-OwnerProvider="@item["OwnerProvider"]" asp-route-OfferId="@item["OfferId"]" asp-route-Description="@item["Description"]" asp-route-BoardName="@item["BoardName"]" asp-route-RoomName = "@item["RoomName"]" asp-route-Price = "@item["Price"]" asp-route-PriceCurrency = "@item["PriceCurrency"]">
+                            
+                            <h3 id="hotelTitle" class="tm-recommended-title">@item["HotelName"]</h3>
+                            </a>
+                            <p class="tm-text-highlight">@item["HotelLocation"]</p>
+                            <p class="tm-text-gray">@item["BoardName"] / @item["RoomName"]</p>
+                            @{
+                                for (int i=0;i<(int)Char.GetNumericValue(char.Parse(item["Stars"].Substring(0,1))); i++)
+                                {
+                                    <span>&#11088;</span>
+                                }
+                            }
+                        </div>
+                        <a class="tm-recommended-price-box" asp-controller="List" asp-action="HotelDetails" asp-route-ItemId="@item["ItemId"]" asp-route-OwnerProvider="@item["OwnerProvider"]" asp-route-OfferId="@item["OfferId"]" asp-route-Description="@item["Description"]" asp-route-BoardName="@item["BoardName"]" asp-route-RoomName = "@item["RoomName"]" asp-route-Price = "@item["Price"]" asp-route-PriceCurrency = "@item["PriceCurrency"]">
+                            <p id="currency" class="tm-recommended-price">@item["Price"] @{if(item["PriceCurrency"] == "EUR"){<span>€</span>}}</p>
+                            <p class="tm-recommended-price-link">See details</p>
+                        </a>
+                    </div>
+                }
+
+            </div>
+
+            <a href="#topElement" id="lastElement" class="text-uppercase btn-primary tm-btn mx-auto tm-d-table">Scroll to Top</a>
+        </div> <!-- tab-pane -->
+
+    </div>
+</div>
+
+
+
+
+
+

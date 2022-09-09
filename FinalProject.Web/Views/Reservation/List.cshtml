@@ -1,0 +1,55 @@
+﻿@model IEnumerable<FinalProject.Domain.Reservations.Reservation>
+
+
+<div class="container" style="margin-top:119px;">
+    <div class="col-md-12" style="margin:auto">
+        <div style="margin-top:150px;">
+            <div class="text-center">
+
+                <h1 style="">Reservations</h1>
+
+
+            </div>
+            @TempData["TransactionError"]
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Hotel</th>
+                        <th>Registration Date</th>
+                        <th>ReservationNumber</th>
+                        <th>TransactionDate</th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model)
+                    {
+                        <tr>
+                            <td>@user.Id</td>
+                            <td>@user.Name</td>
+                            <td>@user.Surname</td>
+                            <td>@user.Email</td>
+                            <td>@user.Phone</td>
+                            <td>@user.Hotel</td>
+                            <td>@user.ReservationNumber</td>
+                            <td>@user.TransactionDate</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+
+
+
+
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,48 @@
+﻿@model FinalProject.Domain.Users.User
+<div class="container" style="margin-top:119px;">
+    <div class="col-md-12" style="margin:auto">
+        <div style="margin-top:150px;">
+            <form class="form-group" method="post">
+                <h1>Create User</h1>
+
+
+                <label asp-for="Username"></label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" style="color:red"></span>
+
+                <br />
+
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" style="color:red"></span>
+
+                <br />
+
+                <label asp-for="Password"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" style="color:red"></span>
+
+                <br />
+
+                <label asp-for="IsActive"></label>
+                <input asp-for="IsActive" />
+                <span asp-validation-for="IsActive" style="color:red"></span>
+
+
+                <br />
+                <br />
+
+                <button type="submit" class="btn btn-primary">Create</button>
+                <button type="reset" class="btn btn-warning">Reset</button>
+                <a asp-controller="User" asp-action="List" class="btn btn-secondary">Back to the list</a>
+            </form>
+
+        </div>
+    </div>
+</div>
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+
+}

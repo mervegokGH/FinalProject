@@ -1,0 +1,200 @@
+﻿@*@model Dictionary<string,string>
+*@
+@model FinalProject.Domain.Reservations.Reservation
+
+@{
+    TempData["OfferId"] = ViewBag.OfferId;
+    TempData["HotelName"] = ViewBag.HotelDetails["Name"];
+    TempData["TransactionError"] = "An error occured from the hotel.Please try agin :)";
+    
+}   
+
+
+
+<h1>@ViewBag.HotelDetails["Name"]</h1>
+
+
+<div class="container" style="margin-top:119px;">
+    <div class="col-md-12" style="margin:auto">
+        <section style="display:none" class="tm-banner">
+            <div class="tm-container-outer tm-banner-bg">
+                <div class="container">
+                    <div class="alert alert-info">
+                        <span>@TempData["Message"]</span>
+                        <span>@TempData["TransactionError"];</span></div>
+
+                    <div class="row tm-banner-row" id="tm-section-search">
+
+                        <form hidden action="index.html" method="get" class="tm-search-form tm-section-pad-2">
+                            <div class="form-row tm-search-form-row">
+                            </div> <!-- form-row -->
+                            <div class="form-row tm-search-form-row">
+
+                                <div class="form-group tm-form-group tm-form-group-pad tm-form-group-3">
+                                    <label for="inputCheckIn">Check In Date</label>
+                                    <input name="check-in" type="text" class="form-control" id="inputCheckIn" placeholder="Check In">
+                                </div>
+                                <div class="form-group tm-form-group tm-form-group-pad tm-form-group-3">
+                                    <label for="inputCheckOut">Check Out Date</label>
+                                    <input name="check-out" type="text" class="form-control" id="inputCheckOut" placeholder="Check Out">
+                                </div>
+                                <div class="form-group tm-form-group tm-form-group-pad tm-form-group-1">
+                                    <label for="btnSubmit">&nbsp;</label>
+                                    <button type="submit" class="btn btn-primary tm-btn tm-btn-search text-uppercase" id="btnSubmit">Check Availability</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div> <!-- row -->
+                    <div class="tm-banner-overlay"></div>
+                </div>  <!-- .container -->
+            </div>     <!-- .tm-container-outer -->
+        </section>
+
+
+
+
+
+        <div class="tm-container-outer" id="tm-section-2">
+
+
+
+
+            <section class="tm-slideshow-section">
+                <div class="tm-slideshow">
+                    @if (int.Parse(ViewBag.HotelDetails["ImageCount"]) != 0)
+                    {
+                        for (int i = 0; i < int.Parse(ViewBag.HotelDetails["ImageCount"]); i++)
+                        {
+                            <img style="width:540px; height:304px;" src="@ViewBag.HotelDetails[$"Image_{i}"]" alt="Image">
+                        }
+                    }
+                    else
+                    {
+                        <img style="width:540px; height:304px;" src="/journey/img/hotelDefault2.png" alt="Image">
+                    }
+
+
+
+
+                </div>
+                <div class="tm-slideshow-description tm-bg-primary">
+                    <h2 class="">@ViewBag.HotelDetails["Name"]</h2>
+                    <p>@ViewBag.BoardName / @ViewBag.RoomName</p>
+
+                    @{
+                        for (int i = 0; i < (int)Char.GetNumericValue(char.Parse(@ViewBag.HotelDetails["Stars"].Substring(0, 1))); i++)
+                        {
+                            <span>&#11088;</span>
+                        }
+                    }
+                     <p id="currency" class="tm-recommended-price">@ViewBag.Price @{if(@ViewBag.PriceCurrency == "EUR"){<span>€</span>}}</p>
+
+                    @*<a href="#" class="text-uppercase tm-btn tm-btn-white tm-btn-white-primary">Continue Reading</a>*@
+                </div>
+            </section>
+
+            @*<section class="clearfix tm-slideshow-section tm-slideshow-section-reverse">
+
+            <div class="tm-right tm-slideshow tm-slideshow-highlight">
+            <img src="~/journey/img/tm-img-02.jpg" alt="Image">
+            <img src="~/journey/img/tm-img-03.jpg" alt="Image">
+            <img src="~/journey/img/tm-img-01.jpg" alt="Image">
+            </div>
+
+            <div class="tm-slideshow-description tm-slideshow-description-left tm-bg-highlight">
+            <h2 class="">Asia's most popular places</h2>
+            <p>Vivamus in massa ullamcorper nunc auctor accumsan ac at arcu. Donec sagittis mattis pharetra. Proin commodo, ante et volutpat pulvinar, arcu arcu ullamcorper diam, id maximus sem tellus id sem. Suspendisse eget rhoncus diam. Fusce urna elit, porta nec ullamcorper id.</p>
+            <a href="#" class="text-uppercase tm-btn tm-btn-white tm-btn-white-highlight">Continue Reading</a>
+            </div>
+
+            </section>
+            <section class="tm-slideshow-section">
+            <div class="tm-slideshow">
+            <img src="~/journey/img/tm-img-03.jpg" alt="Image">
+            <img src="~/journey/img/tm-img-02.jpg" alt="Image">
+            <img src="~/journey/img/tm-img-01.jpg" alt="Image">
+            </div>
+            <div class="tm-slideshow-description tm-bg-primary">
+            <h2 class="">America's most famous places</h2>
+            <p>Donec nec laoreet diam, at vehicula ante. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse nec dapibus nunc, quis viverra metus. Morbi eget diam gravida, euismod magna vel, tempor urna.</p>
+            <a href="#" class="text-uppercase tm-btn tm-btn-white tm-btn-white-primary">Continue Reading</a>
+            </div>
+            </section>*@
+
+
+
+        </div>
+
+        <section class="p-5 tm-container-outer tm-bg-gray" style="margin-top:119px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 mx-auto tm-about-text-wrap text-center">
+                        <h2 class="text-uppercase mb-4">About <strong>@ViewBag.HotelDetails["Name"]</strong></h2>
+                        <p class="mb-4">@ViewBag.Description</p>
+                        <a href="#bookNow" class="text-uppercase btn-primary tm-btn">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+        <div id="bookNow"></div>
+
+        <div class="container" style="margin-top:119px;">
+            <div class="col-md-6" style="margin:auto">
+                <h1>Reservation form</h1>
+                <form class="form-group" method="post">
+
+
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" style="color:red"></span>
+
+                    <br />
+
+                    <label asp-for="Surname"></label>
+                    <input asp-for="Surname" class="form-control" />
+                    <span asp-validation-for="Surname" style="color:red"></span>
+
+                    <br />
+
+
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" style="color:red"></span>
+
+                    <br />
+
+                    <label asp-for="Phone"></label>
+                    <input asp-for="Phone" class="form-control" />
+                    <span asp-validation-for="Phone" style="color:red"></span>
+
+                    <br />
+
+
+
+                    <br />
+                    <br />
+
+
+                    <button type="submit" class="btn btn-primary">Book Now</button>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+
+}
